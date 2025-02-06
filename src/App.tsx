@@ -31,6 +31,90 @@ function App() {
   return (
     <Container>
       <div>
+        <h2 className="text-2xl font-bold">Timestamp</h2>
+        <Code>
+          {
+            "const dayjsTimestamp = dayjs().valueOf();\nconst temporalTimestamp = Temporal.Now.instant().epochMilliseconds;"
+          }
+        </Code>
+        <p>Day.js: {dayjs().valueOf()}</p>
+        <p>Temporal: {Temporal.Now.instant().epochMilliseconds}</p>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
+        <h2 className="text-2xl font-bold">Now</h2>
+        <div>
+          <Code>
+            {
+              "const dayjsNow = dayjs().format()\nconst temporalNow = Temporal.Now.plainDateTimeISO().toString();"
+            }
+          </Code>
+        </div>
+        <div>
+          <p>Dayjs: - {dayjs().format()}</p>
+          <p>Temporal: - {Temporal.Now.plainDateTimeISO().toString()}</p>
+        </div>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
+        <h2 className="text-2xl font-bold">Formatting</h2>
+        <Code>
+          {
+            "const dayjsFormatted = dayjs().format('MMMM D, YYYY h:mm A');\nconst temporalFormatted = Temporal.Now.plainDateTimeISO().toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });"
+          }
+        </Code>
+        <p>Day.js: {dayjs().format("MMMM D, YYYY h:mm A")}</p>
+        <p>
+          Temporal:{" "}
+          {Temporal.Now.plainDateTimeISO().toLocaleString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          })}
+        </p>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
+        <h2 className="text-2xl font-bold">Parsing</h2>
+        <Code>
+          {
+            "const dayjsParsed = dayjs('2023-10-10T10:00:00').format();\nconst temporalParsed = Temporal.PlainDateTime.from('2023-10-10T10:00:00').toString();"
+          }
+        </Code>
+        <p>Day.js: {dayjs("2023-10-10T10:00:00").format()}</p>
+        <p>
+          Temporal:{" "}
+          {Temporal.PlainDateTime.from("2023-10-10T10:00:00").toString()}
+        </p>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
+        <h2 className="text-2xl font-bold">
+          Parsing UTC Date and Converting to Specific Timezone
+        </h2>
+        <Code>
+          {
+            "const dayjsParsedUTC = dayjs.utc('2023-10-10T10:00:00Z').tz('America/Los_Angeles').format();\nconst temporalParsedUTC = Temporal.ZonedDateTime.from('2023-10-10T10:00:00Z'.replace('Z', '+00:00[UTC]').withTimeZone('America/Los_Angeles').toString();"
+          }
+        </Code>
+        <p>
+          Day.js:{" "}
+          {dayjs.utc("2023-10-10T10:00:00Z").tz("America/Los_Angeles").format()}
+        </p>
+        <p>
+          Temporal:{" "}
+          {Temporal.ZonedDateTime.from(
+            "2023-10-10T10:00:00Z".replace("Z", "+00:00[UTC]")
+          )
+            .withTimeZone("America/Los_Angeles")
+            .toString()}
+        </p>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
         <h2 className="text-2xl font-bold">Simple Date</h2>
         <Code>
           {
@@ -61,32 +145,6 @@ function App() {
         </Code>
         <p>Day.js: {dayjs("10-10", "MM-DD").format()}</p>
         <p>Temporal: {Temporal.PlainMonthDay.from("10-10").toString()}</p>
-      </div>
-      <hr className="my-4 border-gray-300"></hr>
-      <div>
-        <h2 className="text-2xl font-bold">Timestamp</h2>
-        <Code>
-          {
-            "const dayjsTimestamp = dayjs().valueOf();\nconst temporalTimestamp = Temporal.Now.instant().epochMilliseconds;"
-          }
-        </Code>
-        <p>Day.js: {dayjs().valueOf()}</p>
-        <p>Temporal: {Temporal.Now.instant().epochMilliseconds}</p>
-      </div>
-      <hr className="my-4 border-gray-300"></hr>
-      <div>
-        <h2 className="text-2xl font-bold">Now</h2>
-        <div>
-          <Code>
-            {
-              "const dayjsNow = dayjs().format()\nconst temporalNow = Temporal.Now.plainDateTimeISO().toString();"
-            }
-          </Code>
-        </div>
-        <div>
-          <p>Dayjs: - {dayjs().format()}</p>
-          <p>Temporal: - {Temporal.Now.plainDateTimeISO().toString()}</p>
-        </div>
       </div>
       <hr className="my-4 border-gray-300"></hr>
       <div>
@@ -212,59 +270,52 @@ function App() {
       </div>
       <hr className="my-4 border-gray-300"></hr>
       <div>
-        <h2 className="text-2xl font-bold">Formatting</h2>
+        <h2 className="text-2xl font-bold">Crossing DST Boundary</h2>
         <Code>
           {
-            "const dayjsFormatted = dayjs().format('MMMM D, YYYY h:mm A');\nconst temporalFormatted = Temporal.Now.plainDateTimeISO().toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });"
-          }
-        </Code>
-        <p>Day.js: {dayjs().format("MMMM D, YYYY h:mm A")}</p>
-        <p>
-          Temporal:{" "}
-          {Temporal.Now.plainDateTimeISO().toLocaleString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-            hour: "numeric",
-            minute: "numeric",
-            hour12: true,
-          })}
-        </p>
-      </div>
-      <hr className="my-4 border-gray-300"></hr>
-      <div>
-        <h2 className="text-2xl font-bold">Parsing</h2>
-        <Code>
-          {
-            "const dayjsParsed = dayjs('2023-10-10T10:00:00').format();\nconst temporalParsed = Temporal.PlainDateTime.from('2023-10-10T10:00:00').toString();"
-          }
-        </Code>
-        <p>Day.js: {dayjs("2023-10-10T10:00:00").format()}</p>
-        <p>
-          Temporal:{" "}
-          {Temporal.PlainDateTime.from("2023-10-10T10:00:00").toString()}
-        </p>
-      </div>
-      <hr className="my-4 border-gray-300"></hr>
-      <div>
-        <h2 className="text-2xl font-bold">
-          Parsing UTC Date and Converting to Specific Timezone
-        </h2>
-        <Code>
-          {
-            "const dayjsParsedUTC = dayjs.utc('2023-10-10T10:00:00Z').tz('America/Los_Angeles').format();\nconst temporalParsedUTC = Temporal.ZonedDateTime.from('2023-10-10T10:00:00Z'.replace('Z', '+00:00[UTC]').withTimeZone('America/Los_Angeles').toString();"
+            "const dayjsCrossDSTStart = dayjs.tz('2023-03-12T02:59:59', 'America/New_York').add(1, 'second').format();\nconst dayjsCrossDSTEnd = dayjs.tz('2023-11-05T01:59:59', 'America/New_York').add(1, 'second').format();\nconst temporalCrossDSTStart = Temporal.ZonedDateTime.from({ year: 2023, month: 3, day: 12, hour: 2, minute: 59, second: 59, timeZone: 'America/New_York' }).add({ seconds: 1 }).toString();\nconst temporalCrossDSTEnd = Temporal.ZonedDateTime.from({ year: 2023, month: 11, day: 5, hour: 1, minute: 59, second: 59, timeZone: 'America/New_York' }).add({ seconds: 1 }).toString();"
           }
         </Code>
         <p>
-          Day.js:{" "}
-          {dayjs.utc("2023-10-10T10:00:00Z").tz("America/Los_Angeles").format()}
+          Day.js Crossing DST Start:{" "}
+          {dayjs
+            .tz("2023-03-12T02:59:59", "America/New_York")
+            .add(1, "second")
+            .format()}
         </p>
         <p>
-          Temporal:{" "}
-          {Temporal.ZonedDateTime.from(
-            "2023-10-10T10:00:00Z".replace("Z", "+00:00[UTC]")
-          )
-            .withTimeZone("America/Los_Angeles")
+          Day.js Crossing DST End:{" "}
+          {dayjs
+            .tz("2023-11-05T01:59:59", "America/New_York")
+            .add(1, "second")
+            .format()}
+        </p>
+        <p>
+          Temporal Crossing DST Start:{" "}
+          {Temporal.ZonedDateTime.from({
+            year: 2023,
+            month: 3,
+            day: 12,
+            hour: 2,
+            minute: 59,
+            second: 59,
+            timeZone: "America/New_York",
+          })
+            .add({ seconds: 1 })
+            .toString()}
+        </p>
+        <p>
+          Temporal Crossing DST End:{" "}
+          {Temporal.ZonedDateTime.from({
+            year: 2023,
+            month: 11,
+            day: 5,
+            hour: 1,
+            minute: 59,
+            second: 59,
+            timeZone: "America/New_York",
+          })
+            .add({ seconds: 1 })
             .toString()}
         </p>
       </div>
