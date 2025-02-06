@@ -31,6 +31,50 @@ function App() {
   return (
     <Container>
       <div>
+        <h2 className="text-2xl font-bold">Simple Date</h2>
+        <Code>
+          {
+            "const dayjsSimpleDate = dayjs('2023-10-10').format();\nconst temporalSimpleDate = Temporal.PlainDate.from('2023-10-10').toString();"
+          }
+        </Code>
+        <p>Day.js: {dayjs("2023-10-10").format()}</p>
+        <p>Temporal: {Temporal.PlainDate.from("2023-10-10").toString()}</p>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
+        <h2 className="text-2xl font-bold">Year and Month</h2>
+        <Code>
+          {
+            "const dayjsYearMonth = dayjs('2023-10').format();\nconst temporalYearMonth = Temporal.PlainYearMonth.from('2023-10').toString();"
+          }
+        </Code>
+        <p>Day.js: {dayjs("2023-10").format()}</p>
+        <p>Temporal: {Temporal.PlainYearMonth.from("2023-10").toString()}</p>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
+        <h2 className="text-2xl font-bold">Month and Day</h2>
+        <Code>
+          {
+            "const dayjsMonthDay = dayjs('10-10', 'MM-DD').format();\nconst temporalMonthDay = Temporal.PlainMonthDay.from('10-10').toString();"
+          }
+        </Code>
+        <p>Day.js: {dayjs("10-10", "MM-DD").format()}</p>
+        <p>Temporal: {Temporal.PlainMonthDay.from("10-10").toString()}</p>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
+        <h2 className="text-2xl font-bold">Timestamp</h2>
+        <Code>
+          {
+            "const dayjsTimestamp = dayjs().valueOf();\nconst temporalTimestamp = Temporal.Now.instant().epochMilliseconds;"
+          }
+        </Code>
+        <p>Day.js: {dayjs().valueOf()}</p>
+        <p>Temporal: {Temporal.Now.instant().epochMilliseconds}</p>
+      </div>
+      <hr className="my-4 border-gray-300"></hr>
+      <div>
         <h2 className="text-2xl font-bold">Now</h2>
         <div>
           <Code>
